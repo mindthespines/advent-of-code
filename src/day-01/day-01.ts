@@ -3,8 +3,8 @@ export class Elf {
   totalCaloriesCarried: number;
 
   constructor(foodItems: number[]) {
-  	this.foodItems = foodItems;
-  	this.totalCaloriesCarried = this.calculateTotalCalories();
+    this.foodItems = foodItems;
+    this.totalCaloriesCarried = this.calculateTotalCalories();
   }
 
   private calculateTotalCalories(): number {
@@ -14,7 +14,7 @@ export class Elf {
   }
 
   static getHighestCaloriesInGroup(elves: Elf[]): number {
-  	const calorieMap = elves.map((elf) => elf.totalCaloriesCarried);
-  	return Math.max.apply(null, calorieMap);
+    const calorieMap = elves.map((elf) => elf.totalCaloriesCarried);
+    return Math.max.apply(null, calorieMap);
   }
 }
