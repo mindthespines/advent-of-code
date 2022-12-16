@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-# begin cache section - if you want to keep things dead-simple you can remove everything between here and the 'end cache section' comment below
+      # begin cache section - if you want to keep things dead-simple you can remove everything between here and the 'end cache section' comment below
       - name: Cache node modules
         id: cache-npm
         uses: actions/cache@v3
@@ -27,7 +27,7 @@ jobs:
         name: List the state of node modules
         continue-on-error: true
         run: npm list
-# end cache section
+      # end cache section
 
       - name: Install dependencies
         run: npm ci
