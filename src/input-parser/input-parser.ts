@@ -1,7 +1,7 @@
 import fsPromises from "fs/promises";
 import path from "path";
 
-import { StrategyGuide, RoundChoices } from "../types";
+import { StrategyGuide, RoundStrategy } from "../types";
 
 export class InputParser {
   contentString = "";
@@ -40,7 +40,7 @@ export class InputParser {
       await this.setContentStringFromFile("day-02-input.txt");
       const splitPerRound = this.contentString.split("\n");
       this.day02Data = splitPerRound.map(
-        (round) => round.split(" ") as RoundChoices
+        (round) => round.split(" ") as RoundStrategy
       );
     } catch (error) {
       console.error(error);

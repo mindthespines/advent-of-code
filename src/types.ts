@@ -1,9 +1,19 @@
 // Day 02 Types
 export type PlayerAChoice = "A" | "B" | "C";
-export type PlayerBChoice = "X" | "Y" | "Z";
-export type RoundChoices = [PlayerAChoice, PlayerBChoice];
-export type StrategyGuide = Array<RoundChoices>;
+export type DesiredOutcome = "X" | "Y" | "Z";
+export type RoundStrategy = [PlayerAChoice, DesiredOutcome];
+export type StrategyGuide = Array<RoundStrategy>;
 export interface RoundScores {
   playerAScore: number;
   playerBScore: number;
+}
+export enum Shape {
+  rock = "A",
+  paper = "B",
+  scissors = "C",
+}
+export enum Outcome {
+  lose = "X",
+  draw = "Y",
+  win = "Z",
 }

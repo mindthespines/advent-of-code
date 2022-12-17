@@ -1,27 +1,33 @@
 import {
-  PlayerAChoice,
-  PlayerBChoice,
-  RoundChoices,
+  RoundStrategy,
   StrategyGuide,
   RoundScores,
+  Shape,
+  Outcome,
 } from "../types";
 
-const pointsByChoice = {
-  A: 1,
-  X: 1,
-  B: 2,
-  Y: 2,
-  C: 3,
-  Z: 3,
+const pointsByShape = {
+  [Shape.rock]: 1,
+  [Shape.paper]: 2,
+  [Shape.scissors]: 3,
 };
 
-const keyBeatsValueMap = {
-  A: "Z",
-  X: "C",
-  B: "X",
-  Y: "A",
-  C: "Y",
-  Z: "B",
+const shapeNeededForOutcome = {
+  [Shape.rock]: {
+    [Outcome.lose]: Shape.scissors,
+    [Outcome.draw]: Shape.rock,
+    [Outcome.win]: Shape.paper,
+  },
+  [Shape.paper]: {
+    [Outcome.lose]: Shape.rock,
+    [Outcome.draw]: Shape.paper,
+    [Outcome.win]: Shape.scissors,
+  },
+  [Shape.scissors]: {
+    [Outcome.lose]: Shape.paper,
+    [Outcome.draw]: Shape.scissors,
+    [Outcome.win]: Shape.rock,
+  },
 };
 
 export class Game {
@@ -44,14 +50,17 @@ export class Game {
 }
 
 export class Round {
-  playerAChoice: PlayerAChoice;
-  playerBChoice: PlayerBChoice;
+  playerAChoice: "A" | "B" | "C";
+  playerBChoice: "A" | "B" | "C";
+  desiredOutcome: "X" | "Y" | "Z";
   playerAScore = 0;
   playerBScore = 0;
 
-  constructor(roundChoices: RoundChoices) {
-    this.playerAChoice = roundChoices[0];
-    this.playerBChoice = roundChoices[1];
+  constructor(roundStrategy: RoundStrategy) {
+    this.playerAChoice = roundStrategy[0];
+    this.desiredOutcome = roundStrategy[1];
+    this.playerBChoice =
+      shapeNeededForOutcome[this.playerAChoice][this.desiredOutcome];
   }
 
   playRound(): RoundScores {
@@ -61,9 +70,9 @@ export class Round {
   }
 
   private assignOutcomePoints() {
-    if (keyBeatsValueMap[this.playerAChoice] === this.playerBChoice) {
+    if (this.desiredOutcome === Outcome.lose) {
       this.playerAScore += 6;
-    } else if (keyBeatsValueMap[this.playerBChoice] === this.playerAChoice) {
+    } else if (this.desiredOutcome === Outcome.win) {
       this.playerBScore += 6;
     } else {
       this.playerAScore += 3;
@@ -72,7 +81,7 @@ export class Round {
   }
 
   private assignShapePoints() {
-    this.playerAScore += pointsByChoice[this.playerAChoice];
-    this.playerBScore += pointsByChoice[this.playerBChoice];
+    this.playerAScore += pointsByShape[this.playerAChoice];
+    this.playerBScore += pointsByShape[this.playerBChoice];
   }
 }

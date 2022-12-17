@@ -1,5 +1,5 @@
 import { Game, Round } from "./day-02";
-import { StrategyGuide, RoundChoices } from "../types";
+import { StrategyGuide, RoundStrategy } from "../types";
 import { InputParser } from "../input-parser/input-parser";
 
 /*
@@ -14,10 +14,10 @@ async function setUpStrategy() {
 
 describe("day 02 tests", () => {
   it("correctly calculates the points earned in a given round", () => {
-    const testChoices: RoundChoices = ["A", "Y"];
-    const round = new Round(testChoices);
+    const testStrategy: RoundStrategy = ["A", "Y"];
+    const round = new Round(testStrategy);
     const actual = round.playRound();
-    const expected = { playerAScore: 1, playerBScore: 8 };
+    const expected = { playerAScore: 4, playerBScore: 4 };
     expect(actual).toEqual(expected);
   });
   it("calculates my final rock paper scissors score per a strategy guide", () => {
@@ -29,7 +29,7 @@ describe("day 02 tests", () => {
     const testGame = new Game(strategyGuide);
     testGame.calculateScores();
     const actual = testGame.playerBTotal;
-    const expected = 15;
+    const expected = 12;
     expect(actual).toEqual(expected);
   });
   it("calculates my final rock paper scissors score per the input strategy guide", async () => {
@@ -37,7 +37,7 @@ describe("day 02 tests", () => {
     const testGame = new Game(guide);
     testGame.calculateScores();
     const actual = testGame.playerBTotal;
-    const expected = 13675;
+    const expected = 14184;
     expect(actual).toEqual(expected);
   });
 });
