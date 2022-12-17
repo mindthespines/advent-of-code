@@ -1,5 +1,5 @@
 {
-  "name": "ts-node-bootstrap",
+  "name": "advent-of-code",
   "version": "1.0.0",
   "description": "A template repository for Node TypeScript projects",
   "main": "dist/main.js",
