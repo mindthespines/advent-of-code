@@ -1,3 +1,5 @@
+import { getArraySum, compareNumsDescending } from "../utils/utils";
+
 export class Elf {
   foodItems: number[];
   totalCaloriesCarried: number;
@@ -8,17 +10,13 @@ export class Elf {
   }
 
   private calculateTotalCaloriesCarried(): number {
-    return this.foodItems.reduce((acc, current) => {
-      return acc + current;
-    }, 0);
+    return getArraySum(this.foodItems);
   }
 
   private static getSortedCalorieCountsForAllElves(elves: Elf[]): number[] {
-    function compareDescending(a: number, b: number) {
-      return b - a;
-    }
-
-    return elves.map((elf) => elf.totalCaloriesCarried).sort(compareDescending);
+    return elves
+      .map((elf) => elf.totalCaloriesCarried)
+      .sort(compareNumsDescending);
   }
 
   static getHighestCaloriesInGroup(elves: Elf[]): number {
@@ -27,8 +25,6 @@ export class Elf {
 
   static getThreeHighestCombinedCalories(elves: Elf[]): number {
     const topThree = this.getSortedCalorieCountsForAllElves(elves).slice(0, 3);
-    return topThree.reduce((acc, current) => {
-      return acc + current;
-    }, 0);
+    return getArraySum(topThree);
   }
 }
