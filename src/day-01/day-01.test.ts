@@ -1,14 +1,12 @@
 import { Elf } from "./day-01";
-import { InputParser } from "../input-parser/input-parser";
+import { getDay01Data } from "../input-parser/input-parser";
 
 /*
 prompt: https://adventofcode.com/2022/day/1
 */
 
 async function setUpElves() {
-  const parser = new InputParser();
-  await parser.setDay01Data();
-  const allElfData = parser.day01Data;
+  const allElfData = await getDay01Data();
   return allElfData.map((data) => new Elf(data));
 }
 

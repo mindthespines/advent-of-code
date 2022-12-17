@@ -1,15 +1,14 @@
 import { Game, Round } from "./day-02";
 import { StrategyGuide, RoundStrategy } from "../types";
-import { InputParser } from "../input-parser/input-parser";
+import { getDay02Data } from "../input-parser/input-parser";
 
 /*
-puzzle at https://adventofcode.com/2022/day/2
+prompt https://adventofcode.com/2022/day/2
 */
 
 async function setUpStrategy() {
-  const parser = new InputParser();
-  await parser.setDay02Data();
-  return parser.day02Data;
+  const data = await getDay02Data();
+  return data;
 }
 
 describe("day 02 tests", () => {
@@ -20,6 +19,7 @@ describe("day 02 tests", () => {
     const expected = { playerAScore: 4, playerBScore: 4 };
     expect(actual).toEqual(expected);
   });
+
   it("calculates my final rock paper scissors score per a strategy guide", () => {
     const strategyGuide: StrategyGuide = [
       ["A", "Y"],
@@ -32,6 +32,7 @@ describe("day 02 tests", () => {
     const expected = 12;
     expect(actual).toEqual(expected);
   });
+
   it("calculates my final rock paper scissors score per the input strategy guide", async () => {
     const guide = await setUpStrategy();
     const testGame = new Game(guide);
