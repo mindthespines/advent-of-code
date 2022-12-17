@@ -19,4 +19,12 @@ describe("input parser tests", () => {
       8164, 2663, 8024, 9441, 5027, 9077, 6889, 7045, 8717,
     ]);
   });
+
+  it("sets up the data to be used for the day two puzzle", async () => {
+    const parser = new InputParser();
+    await parser.setDay02Data();
+    const data = parser.day02Data;
+    expect(data[0]).toEqual(["B", "Y"]);
+    expect(data[data.length - 1]).toEqual(["B", "Y"]);
+  });
 });

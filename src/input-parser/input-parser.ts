@@ -1,9 +1,12 @@
 import fsPromises from "fs/promises";
 import path from "path";
 
+import { StrategyGuide, RoundChoices } from "../types";
+
 export class InputParser {
   contentString = "";
-  day01Data: number[][] = [[]];
+  day01Data: Array<number[]> = [[]];
+  day02Data: StrategyGuide = [["A", "X"]];
 
   async setContentStringFromFile(fileName: string): Promise<void> {
     try {
@@ -26,6 +29,18 @@ export class InputParser {
       const splitPerElf = this.contentString.split("\n\n");
       this.day01Data = splitPerElf.map((calString) =>
         getCalorieArray(calString)
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async setDay02Data(): Promise<void> {
+    try {
+      await this.setContentStringFromFile("day-02-input.txt");
+      const splitPerRound = this.contentString.split("\n");
+      this.day02Data = splitPerRound.map(
+        (round) => round.split(" ") as RoundChoices
       );
     } catch (error) {
       console.error(error);
