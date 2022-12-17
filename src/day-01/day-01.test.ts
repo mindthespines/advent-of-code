@@ -1,8 +1,16 @@
 import { Elf } from "./day-01";
+import { InputParser } from "../input-parser/input-parser";
 
 /*
 prompt: https://adventofcode.com/2022/day/1
 */
+
+async function setUpElves() {
+  const parser = new InputParser();
+  await parser.setDay01Data();
+  const allElfData = parser.day01Data;
+  return allElfData.map((data) => new Elf(data));
+}
 
 describe("day 1 tests", () => {
   it("creates a new Elf and determines how many calories they are carrying", () => {
@@ -26,5 +34,17 @@ describe("day 1 tests", () => {
     const actual = Elf.getHighestCaloriesInGroup(testElves);
     const expected = 53064;
     expect(actual).toEqual(expected);
+  });
+
+  it("returns the calorie count of the Elf with the highest calorie count, and the combined calories of the top three highest", async () => {
+    const allElves = await setUpElves();
+
+    const actualSingle = Elf.getHighestCaloriesInGroup(allElves);
+    const expectedSingle = 72718;
+    expect(actualSingle).toEqual(expectedSingle);
+
+    const actualCombined = Elf.getThreeHighestCombinedCalories(allElves);
+    const expectedCombined = 213089;
+    expect(actualCombined).toEqual(expectedCombined);
   });
 });

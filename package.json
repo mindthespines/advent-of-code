@@ -14,7 +14,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format:fix": "prettier --write .",
-    "fix": "npm run lint:fix && npm run format:fix"
+    "fix": "npm run format:fix && npm run lint:fix"
   },
   "jest": {
     "preset": "ts-jest",
