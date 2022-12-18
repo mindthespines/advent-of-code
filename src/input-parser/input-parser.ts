@@ -5,7 +5,9 @@ import { StrategyGuide } from "../types";
 
 export async function getDay01Data(): Promise<Array<number[]>> {
   function callback(contentString: string): Array<number[]> {
-    return splitOnDoubleNewline(contentString).map((group) => splitOnNewline(group).map((i) => Number(i)));
+    return splitOnDoubleNewline(contentString).map((group) =>
+      splitOnNewline(group).map((i) => Number(i))
+    );
   }
 
   try {
@@ -43,9 +45,11 @@ export async function getDay03Data(): Promise<string[]> {
 
 export async function getDay18Data(): Promise<Array<number[]>> {
   function callback(contentString: string): Array<number[]> {
-    return splitOnNewline(contentString).map((line) => splitOnComma(line).map((i) => Number(i)));
+    return splitOnNewline(contentString).map((line) =>
+      splitOnComma(line).map((i) => Number(i))
+    );
   }
-  
+
   try {
     const data = await getInputData("day-18-input.txt", callback);
     return data;
@@ -68,7 +72,10 @@ export async function getContentStringFromFile(
   }
 }
 
-async function getInputData<T>(fileName: string, callback: (contentString: string) => T): Promise<T> {
+async function getInputData<T>(
+  fileName: string,
+  callback: (contentString: string) => T
+): Promise<T> {
   try {
     const contentString = await getContentStringFromFile(fileName);
     return callback(contentString);
