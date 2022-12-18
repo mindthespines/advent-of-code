@@ -4,6 +4,8 @@ import {
   RoundScores,
   Shape,
   Outcome,
+  PlayerChoice,
+  DesiredOutcome,
 } from "../types";
 
 const pointsByShape = {
@@ -50,9 +52,9 @@ export class Game {
 }
 
 export class Round {
-  playerAChoice: "A" | "B" | "C";
-  playerBChoice: "A" | "B" | "C";
-  desiredOutcome: "X" | "Y" | "Z";
+  playerAChoice: PlayerChoice;
+  playerBChoice: PlayerChoice;
+  desiredOutcome: DesiredOutcome;
   playerAScore = 0;
   playerBScore = 0;
 

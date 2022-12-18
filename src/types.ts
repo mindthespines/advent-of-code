@@ -1,7 +1,7 @@
 // Day 02 Types
-export type PlayerAChoice = "A" | "B" | "C";
+export type PlayerChoice = "A" | "B" | "C";
 export type DesiredOutcome = "X" | "Y" | "Z";
-export type RoundStrategy = [PlayerAChoice, DesiredOutcome];
+export type RoundStrategy = [PlayerChoice, DesiredOutcome];
 export type StrategyGuide = Array<RoundStrategy>;
 export interface RoundScores {
   playerAScore: number;
