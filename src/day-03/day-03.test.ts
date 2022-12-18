@@ -33,7 +33,7 @@ describe("day 3 tests", () => {
       (contents) => new Rucksack(contents)
     );
     const collection = new RucksackCollection(rucksacks);
-    
+
     const actualDupe = collection.dupePrioritySum;
     const expectedDupe = 8053;
     expect(actualDupe).toEqual(expectedDupe);
