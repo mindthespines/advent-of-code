@@ -41,3 +41,13 @@ export async function getDay02Data(): Promise<StrategyGuide> {
     throw error;
   }
 }
+
+export async function getDay03Data(): Promise<string[]> {
+  try {
+    const contentString = await getContentStringFromFile("day-03-input.txt");
+    return contentString.split("\n");
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
