@@ -2,13 +2,14 @@ import { getDay18Data } from "../input-parser/input-parser";
 import { LavaScan, Cube } from "./day-18";
 
 /* prompt: https://adventofcode.com/2022/day/18 */
-// holy hell I have no idea how to work with this data, hanging this one up
+// gave up partway through part 2, brain not work
 
 describe("day 18 tests", () => {
   it("calculates the surface area of a single cube, small sample", () => {
     const neighbors = [new Cube([2, 1, 1])];
     const testCube = new Cube([1, 1, 1]);
-    testCube.calculateCoveredSides(neighbors);
+    testCube.setNeighbors(neighbors);
+    testCube.calculateCoveredSides();
     const actual = testCube.exposedSides;
     const expected = 5;
     expect(actual).toEqual(expected);
@@ -17,7 +18,8 @@ describe("day 18 tests", () => {
   it("calculates the surface area of a single cube, small sample", () => {
     const neighbors = [new Cube([1, 1, 1]), new Cube([1, 1, 2])];
     const testCube = new Cube([2, 1, 1]);
-    testCube.calculateCoveredSides(neighbors);
+    testCube.setNeighbors(neighbors);
+    testCube.calculateCoveredSides();
     const actual = testCube.exposedSides;
     const expected = 5;
     expect(actual).toEqual(expected);
@@ -39,7 +41,8 @@ describe("day 18 tests", () => {
       [2, 3, 5],
     ].map((cube) => new Cube(cube as [number, number, number]));
     const testCube = new Cube([2, 2, 2]);
-    testCube.calculateCoveredSides(neighbors);
+    testCube.setNeighbors(neighbors);
+    testCube.calculateCoveredSides();
     const actual = testCube.exposedSides;
     const expected = 0;
     expect(actual).toEqual(expected);
@@ -73,9 +76,15 @@ describe("day 18 tests", () => {
       [2, 3, 5],
     ];
     const testLavaScan = new LavaScan(sampleLavaScan);
-    const expected = 64;
-    const actual = testLavaScan.surfaceArea;
-    expect(actual).toEqual(expected);
+
+    const expectedTotal = 64;
+    const actualTotal = testLavaScan.surfaceArea;
+    expect(actualTotal).toEqual(expectedTotal);
+
+    // part two tests
+    // const expectedExterior = 58;
+    // const actualExterior = testLavaScan.exteriorSurfaceArea;
+    // expect(actualExterior).toEqual(expectedExterior);
   });
 
   it("solves the part one puzzle", async () => {
